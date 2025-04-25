@@ -28,14 +28,13 @@ body {
   background: var(--bg-color);
   color: var(--text-color);
   overflow: hidden;
-  margin: 3rem;
   zoom: 75%;
+  margin: 3rem;
 }
 
 .wrapper {
   position: relative;
-  width: 100%;
-  max-width: 66rem;
+  width: 66rem;
   height: 45rem;
   padding: 2rem;
   perspective: 250rem;
@@ -450,38 +449,41 @@ body {
   cursor: pointer;
 }
 
-@media screen and (max-width: 768px) {
-  body {
-    zoom: 100%;
-  }
+.back-profile {
+  position: absolute;
+  bottom: 1.2rem;
+  right: 2rem;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: var(--border);
+  border-radius: 0.3rem;
+  font-size: 1.1rem;
+  color: var(--main-color);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+}
 
-  .wrapper {
-    width: 100%;
-    height: auto;
-  }
+.back-profile:hover {
+  background: var(--main-color);
+  color: white;
+}
 
-  .cover,
-  .book-page {
-    width: 100%;
-    height: auto;
-  }
+.back-profile p {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) scale(0.5);
+  font-size: 1rem;
+  color: var(--main-color);
+  opacity: 0;
+  transition: 0.5s;
+}
 
-  .book .book-page {
-    display: block;
-    padding: 1rem;
-  }
-
-  .profile-page h1 {
-    font-size: 2rem;
-  }
-
-  .profile-page h3 {
-    font-size: 1.3rem;
-  }
-
-  .btn {
-    width: 8rem;
-    height: 2.5rem;
-    font-size: 0.9rem;
-  }
+.back-profile:hover p {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+  top: -1.8rem;
 }
