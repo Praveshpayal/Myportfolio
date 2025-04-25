@@ -1,125 +1,117 @@
-/* Your existing CSS remains the same above this point... */
+/* Responsive Book Layout Preserved */
 
-/* Responsive Design Starts Here */
-@media (max-width: 1200px) {
+/* For tablets and smaller laptops */
+@media (max-width: 1024px) {
   .wrapper {
-    width: 95%;
+    width: 90%;
+    height: 90vh;
+  }
+
+  .book {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .book .book-page {
+    width: 50%;
     height: auto;
   }
 
-  .book,
-  .book .book-page {
+  .book-page .page-front,
+  .book-page .page-back {
+    padding: 1rem;
+  }
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .book {
     flex-direction: column;
     width: 100%;
-    height: auto;
   }
 
   .book .book-page {
+    position: static;
     width: 100%;
+    height: auto;
+    transform: none !important;
+    box-shadow: none;
   }
 
   .cover {
     display: none;
   }
 
-  .book-page.page-right {
-    position: relative;
-    transform: none !important;
-  }
-
   .book-page .page-front,
   .book-page .page-back {
-    position: relative;
     transform: none;
+    position: static;
     padding: 1rem;
+    box-shadow: none;
   }
 
+  .nextprev-btn,
   .number-page,
-  .nextprev-btn {
+  .back-profile {
     display: none;
   }
 
-  .btn-box .btn,
-  .services-content .btn,
-  .contact-box .btn {
+  .skills-box,
+  .services-box {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .skills-content .content span,
+  .services-content {
     width: 100%;
-    margin: 0.5rem 0;
+  }
+
+  .btn-box {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .btn {
+    width: 80%;
+  }
+
+  .portfolio-box .img-box {
+    height: 12rem;
   }
 }
 
-@media (max-width: 768px) {
+/* Small phones */
+@media (max-width: 480px) {
   .profile-page img {
     max-width: 120px;
   }
 
   .profile-page h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .profile-page h3 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .skills-content .content span {
-    width: 5rem;
-    height: 4rem;
+    font-size: 0.8rem;
   }
 
   .services-content i {
     font-size: 2rem;
   }
 
-  .skills-content .content span i {
-    font-size: 2rem;
-  }
-
-  .portfolio-box .img-box {
-    height: 12rem;
-  }
-
-  .workeduc-content .year {
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .skills-content .content {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .services-box,
-  .skills-box {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .services-content,
-  .skills-content {
-    width: 100%;
-  }
-
-  .portfolio-box .info-box .info-title {
-    flex-direction: column;
-    gap: 0.3rem;
-  }
-
-  .contact-box .field {
-    font-size: 0.9rem;
-  }
-
-  .title h3 {
-    font-size: 1.3rem;
-  }
-
   .btn {
     font-size: 0.9rem;
     height: 2.7rem;
-  }
-
-  .back-profile {
-    width: 2rem;
-    height: 2rem;
-    font-size: 1rem;
   }
 }
