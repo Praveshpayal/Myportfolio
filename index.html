@@ -975,6 +975,28 @@
         // Contact me button when clicked
         const pages = document.querySelectorAll('.book-page.page-right');
         const contactMeBtn = document.querySelector('.btn.contact-me');
+let currentPage = 0; // start at first page
+function nextPage() {
+    if (currentPage < pages.length - 1) {
+        pages[currentPage].classList.add("turn");
+        currentPage++;
+    }
+}
+
+function prevPage() {
+    if (currentPage > 0) {
+        currentPage--;
+        pages[currentPage].classList.remove("turn");
+    }
+}
+document.querySelectorAll(".next").forEach(btn => {
+    btn.addEventListener("click", nextPage);
+});
+
+document.querySelectorAll(".back").forEach(btn => {
+    btn.addEventListener("click", prevPage);
+});
+
 
         contactMeBtn.onclick = () => {
             pages.forEach((page, index) => {
@@ -1095,4 +1117,5 @@
     </script>
 </body>
 </html>
+
 
