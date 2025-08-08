@@ -1039,35 +1039,60 @@ document.querySelectorAll(".back").forEach(btn => {
         };
 
         // Opening animation
-        const coverRight = document.querySelector('.cover.cover-right');
-        const pageLeft = document.querySelector('.book-page.page-left');
+const coverRight = document.querySelector('.cover.cover-right');
+const pageLeft = document.querySelector('.book-page.page-left');
+const pages = document.querySelectorAll(".book-page.page-right"); // Make sure this is in your code
+let currentPage = 0; // start at first page
 
-        // Opening animation (cover right animation)
+function nextPage() {
+    if (currentPage < pages.length - 1) {
+        pages[currentPage].classList.add("turn");
+        currentPage++;
+    }
+}
+
+function prevPage() {
+    if (currentPage > 0) {
+        currentPage--;
+        pages[currentPage].classList.remove("turn");
+    }
+}
+
+// Event listeners for next/back buttons
+document.querySelectorAll(".next").forEach(btn => {
+    btn.addEventListener("click", nextPage);
+});
+
+document.querySelectorAll(".back").forEach(btn => {
+    btn.addEventListener("click", prevPage);
+});
+
+// Opening animation (cover right animation)
+setTimeout(() => {
+    coverRight.classList.add('turn');
+}, 2100);
+
+setTimeout(() => {
+    coverRight.style.zIndex = -1;
+}, 2800);
+
+// Opening animation (profile page animation)
+setTimeout(() => {
+    pageLeft.style.zIndex = 20;
+}, 3200);
+
+// Opening animation (all page right animation)
+pages.forEach((_, index) => {
+    setTimeout(() => {
+        reverseIndex();
+        pages[pageNumber].classList.remove('turn');
+
         setTimeout(() => {
-            coverRight.classList.add('turn');
-        }, 2100);
-
-        setTimeout(() => {
-            coverRight.style.zIndex = -1;
-        }, 2800);
-
-        // Opening animation (profile page animation)
-        setTimeout(() => {
-            pageLeft.style.zIndex = 20;
-        }, 3200);
-
-        // Opening animation (all page right animation)
-        pages.forEach((_, index) => {
-            setTimeout(() => {
-                reverseIndex();
-                pages[pageNumber].classList.remove('turn');
-
-                setTimeout(() => {
-                    reverseIndex();
-                    pages[pageNumber].style.zIndex = 10 + index;
-                }, 500);
-            }, (index + 1) * 200 + 2100);
-        });
+            reverseIndex();
+            pages[pageNumber].style.zIndex = 10 + index;
+        }, 500);
+    }, (index + 1) * 200 + 2100);
+});
 
         // Add touch support for mobile devices
         let startX = 0;
@@ -1117,5 +1142,6 @@ document.querySelectorAll(".back").forEach(btn => {
     </script>
 </body>
 </html>
+
 
 
