@@ -1,489 +1,1100 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  text-decoration: none;
-  border: none;
-  outline: none;
-  font-family: 'Poppins', sans-serif;
-}
-
-:root {
-  --bg-color: #081b29;
-  --main-color: #00abf0;
-  --text-color: #333;
-  --second-text-color: #555;
-  --white-color: #fff;
-  --cover-color: linear-gradient(45deg, #00abf0, #006e9a);
-  --pages-color: linear-gradient(90deg, #fff, #ddd);
-  --border: 0.125rem solid #00abf0;
-  --box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.2);
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: var(--bg-color);
-  color: var(--text-color);
-  overflow: hidden;
-  zoom: 75%;
-  margin: 3rem;
-}
-
-.wrapper {
-  position: relative;
-  width: 66rem;
-  height: 45rem;
-  padding: 2rem;
-  perspective: 250rem;
-  animation: show-animate 2s forwards;
-}
-
-@keyframes show-animate {
-  0%,
-  30% {
-    opacity: 0;
-    transform: rotate(-20deg);
-  }
-  100% {
-    opacity: 1;
-    transform: rotate(0deg);
-  }
-}
-
-.cover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  background: var(--cover-color);
-  box-shadow: var(--box-shadow);
-  border-top-left-radius: 0.6rem;
-  border-bottom-left-radius: 0.6rem;
-  transform-origin: right;
-}
-
-.cover.cover-left {
-  z-index: -1;
-}
-
-.cover.cover-right {
-  z-index: 100;
-  transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-
-.cover.cover-right.turn {
-  transform: rotateY(180deg);
-}
-
-.book {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  perspective: 250rem;
-}
-
-.book .book-page {
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  background: var(--pages-color);
-  box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.1);
-  display: flex;
-  padding: 2rem;
-}
-
-.book-page.page-left {
-  box-shadow: -0.6rem 0.6rem 0.6rem rgba(0, 0, 0, 0.1);
-}
-
-.profile-page {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.profile-page img {
-  max-width: 180px;
-  border-radius: 50%;
-  border: 0.25rem solid var(--main-color);
-  margin-bottom: 0.8rem;
-}
-
-.profile-page h1 {
-  font-size: 2.7rem;
-  line-height: 1;
-}
-
-.profile-page h3 {
-  font-size: 1.5rem;
-  color: var(--main-color);
-}
-
-.profile-page .social-media {
-  margin: 0.6rem 0 0.8rem;
-}
-
-.profile-page .social-media a {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  background: transparent;
-  border: var(--border);
-  border-radius: 50%;
-  font-size: 1.3rem;
-  color: var(--main-color);
-  margin: 0 0.2rem;
-  transition: 0.5rem;
-}
-
-.profile-page .social-media a:hover {
-  background: var(--main-color);
-  color: var(--white-color);
-}
-
-.profile-page p {
-  text-align: justify;
-}
-
-.profile-page .btn-box {
-  margin-top: 1.2rem;
-}
-
-.btn {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 9.5rem;
-  height: 3rem;
-  background: var(--main-color);
-  border: var(--border);
-  border-radius: 0.3rem;
-  font-size: 1rem;
-  color: var(--white-color);
-  font-weight: 500;
-  margin: 0 1rem;
-  transition: 0.5s;
-}
-
-.btn:hover {
-  background: transparent;
-  color: var(--main-color);
-}
-
-.btn-box .btn:nth-child(2) {
-  background: transparent;
-  color: var(--main-color);
-}
-
-.btn-box .btn:nth-child(2):hover {
-  background: var(--main-color);
-  color: var(--white-color);
-}
-
-.book-page.page-right {
-  position: absolute;
-  right: 0;
-  transform-style: preserve-3d;
-  transform-origin: left;
-  transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-
-.book-page.page-right.turn {
-  transform: rotateY(-180deg);
-}
-
-.book-page .page-front,
-.book-page .page-back {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--pages-color);
-  padding: 1.5rem 2rem;
-}
-
-.book-page .page-front {
-  transform: rotateY(0deg) translateZ(1px);
-}
-
-.book-page .page-back {
-  transform: rotateY(180deg) translateZ(1px);
-}
-
-.title {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.workeduc-box {
-  border-left: var(--border);
-}
-
-.workeduc-box .workeduc-content {
-  position: relative;
-  padding-left: 1.6rem;
-  margin-bottom: 1.2rem;
-}
-
-.workeduc-box .workeduc-content::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -0.65rem;
-  width: 1.2rem;
-  height: 1.2rem;
-  background: var(--main-color);
-  border-radius: 50%;
-}
-
-.workeduc-content .year {
-  color: var(--main-color);
-}
-
-.workeduc-content .year i {
-  margin-right: 0.4rem;
-}
-
-.number-page {
-  position: absolute;
-  bottom: 1.2rem;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.nextprev-btn {
-  position: absolute;
-  bottom: 0.9rem;
-  right: 1.5rem;
-  width: 2rem;
-  height: 2rem;
-  cursor: pointer;
-  font-size: 2rem;
-  color: var(--second-text-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: 0.5s;
-}
-
-.nextprev-btn:hover {
-  color: var(--main-color);
-}
-
-.nextprev-btn.back {
-  left: 1.5rem;
-}
-
-.services-box {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-}
-
-.services-box .services-content {
-  flex: 1 1 10rem;
-  border: var(--border);
-  border-radius: 0.5rem;
-  padding: 0.8rem 0.5rem 1.1rem;
-  text-align: center;
-  transition: 0.3s ease;
-}
-
-.services-box .services-content:hover {
-  box-shadow: var(--box-shadow);
-}
-
-.services-content i {
-  font-size: 2.5rem;
-  color: var(--main-color);
-}
-
-.services-content h3 {
-  font-size: 1.1rem;
-}
-
-.services-content p {
-  margin: 0.2rem 0 0.8rem;
-}
-
-.services-content .btn {
-  width: 8rem;
-  height: 2.5rem;
-}
-
-.skills-box {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-}
-
-.skills-box .skills-content {
-  flex: 1 1 20rem;
-}
-
-.skills-content h3 {
-  font-size: 1.3rem;
-  line-height: 1;
-  margin-bottom: 0.6rem;
-}
-
-.skills-content .content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-}
-
-.skills-content .content span {
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 6rem;
-  height: 5rem;
-  border: var(--border);
-  border-radius: 0.3rem;
-  font-weight: 600;
-  transition: 0.3s ease;
-}
-
-.skills-content .content span:hover {
-  box-shadow: var(--box-shadow);
-}
-
-.skills-content .content span i {
-  font-size: 3rem;
-  color: var(--main-color);
-}
-
-.portfolio-box .img-box {
-  display: flex;
-  width: 100%;
-  height: 15rem;
-  border: var(--border);
-  border-radius: 0.5rem;
-  overflow: hidden;
-}
-
-.portfolio-box .img-box img {
-  width: 100%;
-  object-fit: cover;
-  transition: 0.5s ease;
-}
-
-.portfolio-box .img-box:hover img {
-  transform: scale(1.1);
-}
-
-.portfolio-box .info-box {
-  margin: 1rem 0 1.5rem;
-}
-
-.portfolio-box .info-box .info-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.portfolio-box .info-box .info-title h3 {
-  font-size: 1.3rem;
-}
-
-.portfolio-box .info-box .info-title a {
-  display: flex;
-  align-items: center;
-  color: var(--main-color);
-}
-
-.portfolio-box .info-box .info-title a i {
-  margin-left: 0.3rem;
-}
-
-.portfolio-box .info-box p:nth-of-type(1) {
-  font-weight: 600;
-}
-
-.portfolio-box .btn-box {
-  display: flex;
-  justify-content: center;
-}
-
-.portfolio-box .btn-box .btn {
-  margin: 0 1.5rem;
-}
-
-.contact-box {
-  text-align: center;
-}
-
-.contact-box .field {
-  width: 100%;
-  background: transparent;
-  border: var(--border);
-  border-radius: 0.3rem;
-  padding: 0.8rem;
-  font-size: 1rem;
-  color: var(--text-color);
-  margin-bottom: 1.5rem;
-}
-
-.contact-box .field::placeholder {
-  color: var(--text-color);
-}
-
-.contact-box textarea {
-  resize: none;
-  height: 15rem;
-}
-
-.contact-box .btn {
-  cursor: pointer;
-}
-
-.back-profile {
-  position: absolute;
-  bottom: 1.2rem;
-  right: 2rem;
-  width: 2rem;
-  height: 2rem;
-  background: transparent;
-  border: var(--border);
-  border-radius: 0.3rem;
-  font-size: 1.1rem;
-  color: var(--main-color);
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  transition: 0.5s;
-}
-
-.back-profile:hover {
-  background: var(--main-color);
-  color: white;
-}
-
-.back-profile p {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%) scale(0.5);
-  font-size: 1rem;
-  color: var(--main-color);
-  opacity: 0;
-  transition: 0.5s;
-}
-
-.back-profile:hover p {
-  opacity: 1;
-  transform: translateX(-50%) scale(1);
-  top: -1.8rem;
-}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pravesh-portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous">
+    <link rel="shortcut icon" href="./assets/icon.png" type="image/x-png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --bg-color: #081b29;
+            --main-color: #00abf0;
+            --text-color: #333;
+            --second-text-color: #555;
+            --white-color: #fff;
+            --cover-color: linear-gradient(45deg, #00abf0, #006e9a);
+            --pages-color: linear-gradient(90deg, #fff, #ddd);
+            --border: 0.125rem solid #00abf0;
+            --box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            padding: 1rem;
+        }
+
+        .wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            height: 80vh;
+            min-height: 600px;
+            max-height: 700px;
+            perspective: 250rem;
+            animation: show-animate 2s forwards;
+        }
+
+        @keyframes show-animate {
+            0%, 30% {
+                opacity: 0;
+                transform: rotate(-20deg);
+            }
+            100% {
+                opacity: 1;
+                transform: rotate(0deg);
+            }
+        }
+
+        .cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: var(--cover-color);
+            box-shadow: var(--box-shadow);
+            border-top-left-radius: 0.6rem;
+            border-bottom-left-radius: 0.6rem;
+            transform-origin: right;
+        }
+
+        .cover.cover-left {
+            z-index: -1;
+        }
+
+        .cover.cover-right {
+            z-index: 100;
+            transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .cover.cover-right.turn {
+            transform: rotateY(180deg);
+        }
+
+        .book {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            perspective: 250rem;
+        }
+
+        .book .book-page {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            background: var(--pages-color);
+            box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.1);
+            display: flex;
+            padding: 1.5rem 1.5rem 3.5rem 1.5rem;
+        }
+
+        .book-page.page-left {
+            box-shadow: -0.6rem 0.6rem 0.6rem rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .profile-page img {
+            max-width: 120px;
+            width: 30vw;
+            max-width: 180px;
+            border-radius: 50%;
+            border: 0.25rem solid var(--main-color);
+            margin-bottom: 0.8rem;
+        }
+
+        .profile-page h1 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-page h3 {
+            font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+            color: var(--main-color);
+            margin-bottom: 0.8rem;
+        }
+
+        .profile-page .social-media {
+            margin: 0.6rem 0 0.8rem;
+            display: flex;
+            justify-content: center;
+            gap: 0.3rem;
+        }
+
+        .profile-page .social-media a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 2.2rem;
+            height: 2.2rem;
+            background: transparent;
+            border: var(--border);
+            border-radius: 50%;
+            font-size: 1.1rem;
+            color: var(--main-color);
+            transition: 0.3s;
+        }
+
+        .profile-page .social-media a:hover {
+            background: var(--main-color);
+            color: var(--white-color);
+        }
+
+        .profile-page p {
+            text-align: center;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .profile-page .btn-box {
+            margin-top: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: clamp(8rem, 20vw, 9.5rem);
+            height: 2.5rem;
+            background: var(--main-color);
+            border: var(--border);
+            border-radius: 0.3rem;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            color: var(--white-color);
+            font-weight: 500;
+            margin: 0 0.5rem;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--main-color);
+        }
+
+        .btn-box .btn:nth-child(2) {
+            background: transparent;
+            color: var(--main-color);
+        }
+
+        .btn-box .btn:nth-child(2):hover {
+            background: var(--main-color);
+            color: var(--white-color);
+        }
+
+        .book-page.page-right {
+            position: absolute;
+            right: 0;
+            transform-style: preserve-3d;
+            transform-origin: left;
+            transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .book-page.page-right.turn {
+            transform: rotateY(-180deg);
+        }
+
+        .book-page .page-front,
+        .book-page .page-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--pages-color);
+            padding: 1.5rem 2rem 4rem;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .book-page .page-front {
+            transform: rotateY(0deg) translateZ(1px);
+        }
+
+        .book-page .page-back {
+            transform: rotateY(180deg) translateZ(1px);
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+        }
+
+        .workeduc-box {
+            border-left: var(--border);
+        }
+
+        .workeduc-box .workeduc-content {
+            position: relative;
+            padding-left: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .workeduc-box .workeduc-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -0.5rem;
+            width: 1rem;
+            height: 1rem;
+            background: var(--main-color);
+            border-radius: 50%;
+        }
+
+        .workeduc-content .year {
+            color: var(--main-color);
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
+        }
+
+        .workeduc-content .year i {
+            margin-right: 0.3rem;
+        }
+
+        .workeduc-content h3 {
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            margin: 0.3rem 0;
+        }
+
+        .workeduc-content p {
+            font-size: clamp(0.7rem, 2vw, 0.85rem);
+            line-height: 1.4;
+        }
+
+        .page-footer {
+            position: absolute;
+            bottom: 0.9rem;
+            left: 0;
+            width: 100%;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-item {
+            flex: 1;
+        }
+
+        .footer-item.center {
+            text-align: center;
+        }
+
+        .footer-item.right {
+            text-align: right;
+        }
+
+        .number-page {
+            font-size: 1rem;
+            color: var(--second-text-color);
+            display: inline-block;
+        }
+
+        .nextprev-btn {
+            cursor: pointer;
+            font-size: 2rem;
+            color: var(--second-text-color);
+            background: none;
+            border: none;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.3s;
+            touch-action: manipulation;
+            padding: 0.3rem;
+        }
+
+        .nextprev-btn:hover {
+            color: var(--main-color);
+            transform: scale(1.2);
+        }
+
+        .nextprev-btn i {
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        .skills-box {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .skills-box .skills-content {
+            flex: 1;
+        }
+
+        .skills-content h3 {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .skills-content .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skills-content .content span {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: clamp(4.5rem, 15vw, 6rem);
+            height: clamp(4rem, 12vw, 5rem);
+            border: var(--border);
+            border-radius: 0.3rem;
+            font-weight: 600;
+            transition: 0.3s ease;
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
+            text-align: center;
+            padding: 0.5rem 0.2rem;
+        }
+
+        .skills-content .content span:hover {
+            box-shadow: var(--box-shadow);
+        }
+
+        .skills-content .content span .skill-icon {
+            font-size: clamp(2rem, 6vw, 3rem);
+            color: var(--main-color);
+            margin-bottom: 0.3rem;
+            line-height: 1;
+            display: block;
+        }
+
+        .portfolio-box .img-box {
+            display: flex;
+            width: 100%;
+            height: clamp(8rem, 25vw, 12rem);
+            border: var(--border);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-box .img-box img {
+            width: 100%;
+            object-fit: cover;
+            transition: 0.5s ease;
+        }
+
+        .portfolio-box .img-box:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-box .info-box {
+            margin: 0.5rem 0 1rem;
+        }
+
+        .portfolio-box .info-box .info-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .portfolio-box .info-box .info-title h3 {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+        }
+
+        .portfolio-box .info-box .info-title a {
+            display: flex;
+            align-items: center;
+            color: var(--main-color);
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+        }
+
+        .portfolio-box .info-box .info-title a i {
+            margin-left: 0.3rem;
+        }
+
+        .portfolio-box .info-box p {
+            font-size: clamp(0.7rem, 2vw, 0.85rem);
+            line-height: 1.4;
+            margin-bottom: 0.3rem;
+        }
+
+        .portfolio-box .info-box p:nth-of-type(1) {
+            font-weight: 600;
+        }
+
+        .portfolio-box .btn-box {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .portfolio-box .btn-box .btn {
+            margin: 0;
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
+            width: clamp(6rem, 18vw, 8rem);
+            height: 2.2rem;
+        }
+
+        .contact-box {
+            text-align: center;
+        }
+
+        .contact-box .field {
+            width: 100%;
+            background: transparent;
+            border: var(--border);
+            border-radius: 0.3rem;
+            padding: 0.6rem;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .contact-box .field::placeholder {
+            color: var(--text-color);
+        }
+
+        .contact-box textarea {
+            resize: none;
+            height: clamp(8rem, 20vh, 12rem);
+        }
+
+        .contact-box .btn {
+            cursor: pointer;
+            width: clamp(8rem, 25vw, 12rem);
+        }
+
+        .back-profile {
+            position: absolute;
+            bottom: 0.9rem;
+            right: 2rem;
+            width: auto;
+            height: auto;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            color: var(--second-text-color);
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.3s;
+            touch-action: manipulation;
+            z-index: 10;
+            padding: 0.3rem;
+        }
+
+        .back-profile:hover {
+            color: var(--main-color);
+        }
+
+        .back-profile p {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%) scale(0.5);
+            font-size: 0.8rem;
+            color: var(--main-color);
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .back-profile:hover p {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+            top: -1.5rem;
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            body {
+                padding: 0.5rem;
+            }
+
+            .wrapper {
+                height: 85vh;
+                min-height: 500px;
+            }
+
+            .book .book-page {
+                padding: 1rem 1rem 3rem 1rem;
+            }
+
+            .book-page .page-front,
+            .book-page .page-back {
+                padding: 1rem 1rem 4rem;
+            }
+
+            .profile-page img {
+                max-width: 100px;
+            }
+
+            .social-media {
+                gap: 0.2rem;
+            }
+
+            .social-media a {
+                width: 2rem;
+                height: 2rem;
+                font-size: 1rem;
+            }
+
+            .workeduc-box .workeduc-content {
+                padding-left: 1rem;
+            }
+
+            .skills-content .content span {
+                width: 4rem;
+                height: 3.5rem;
+                font-size: 0.7rem;
+                padding: 0.3rem 0.1rem;
+            }
+
+            .skills-content .content span .skill-icon {
+                font-size: 1.8rem;
+                margin-bottom: 0.2rem;
+            }
+
+            .portfolio-box .img-box {
+                height: 8rem;
+            }
+
+            .nextprev-btn {
+                width: 2.8rem;
+                height: 2.8rem;
+                font-size: 1.6rem;
+            }
+
+            .page-footer {
+                bottom: 0.5rem;
+                padding: 0 1rem;
+            }
+
+            .back-profile {
+                width: 2.8rem;
+                height: 2.8rem;
+                font-size: 1.4rem;
+                bottom: 0.5rem;
+                right: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .wrapper {
+                height: 90vh;
+                min-height: 450px;
+            }
+
+            .cover {
+                border-radius: 0.3rem;
+            }
+
+            .book .book-page {
+                padding: 0.8rem 0.8rem 3rem 0.8rem;
+            }
+
+            .book-page .page-front,
+            .book-page .page-back {
+                padding: 0.8rem 0.8rem 4rem;
+            }
+
+            .workeduc-box .workeduc-content {
+                padding-left: 0.8rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .skills-box {
+                gap: 0.8rem;
+            }
+
+            .skills-content .content {
+                gap: 0.3rem;
+            }
+
+            .portfolio-box .btn-box {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-box textarea {
+                height: 6rem;
+            }
+        }
+
+        /* Landscape mobile optimization */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .wrapper {
+                height: 95vh;
+                min-height: 400px;
+            }
+
+            .profile-page img {
+                max-width: 80px;
+            }
+
+            .book-page .page-front,
+            .book-page .page-back {
+                padding: 0.5rem 1rem 3.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="cover cover-left"></div>
+        <div class="cover cover-right"></div>
+
+        <div class="book">
+            <!-- Profile page -->
+            <div class="book-page page-left">
+                <div class="profile-page">
+                    <img src="./assets/pravesh.jpg" alt="Pravesh Profile Photo">
+                    <h1>Pravesh Payal</h1>
+                    <h3>Learning DSA & Web Development</h3>
+
+                    <div class="social-media">
+                        <a href="https://wa.me/qr/KHZUFJ26FWMVJ1" target="_blank" aria-label="WhatsApp">
+                            <i class="bx bxl-whatsapp"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/pravesh-payal-77b132252?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" aria-label="LinkedIn">
+                            <i class="bx bxl-linkedin"></i>
+                        </a>
+                        <a href="https://www.instagram.com/pravesh.payal.52?igsh=MjBqeTN1Mnk0bDZn" target="_blank" aria-label="Instagram">
+                            <i class="bx bxl-instagram-alt"></i>
+                        </a>
+                        <a href="https://github.com/Praveshpayal" target="_blank" aria-label="GitHub">
+                            <i class="bx bxl-github"></i>
+                        </a>
+                    </div>
+
+                    <p>
+                        "Hi, I'm Pravesh Payal, a third-year B.Tech student specializing in Computer Science and Engineering."
+                    </p>
+
+                    <div class="btn-box">
+                        <a href="#" class="btn contact-me">Contact Me</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 1 & 2 -->
+            <div class="book-page page-right turn" id="turn-1">
+                <!-- Page 1 (Work Experience) -->
+                <div class="page-front">
+                    <h1 class="title">Work Experience</h1>
+
+                    <div class="workeduc-box">
+                        <div class="workeduc-content">
+                            <span class="year">
+                                <i class="bx bxs-calendar"></i>2023 - 2024
+                            </span>
+                            <h3>Data Analytics Intern at <b>Bharat Intern</b></h3>
+                            <p>
+                                During my internship as a Data Analyst at Bharat Intern, 
+                                I was responsible for analyzing large datasets to extract insights for business decisions.
+                                I utilized advanced Excel functions and SQL queries for data manipulation and analysis.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="page-footer">
+                        <div class="footer-item left"></div>
+                        <div class="footer-item center">
+                            <span class="number-page">1</span>
+                        </div>
+                        <div class="footer-item right">
+                            <span class="nextprev-btn" data-pages="turn-1">
+                                <i class="bx bx-chevron-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 2 (Education) -->
+                <div class="page-back">
+                    <h1 class="title">Education</h1>
+
+                    <div class="workeduc-box">
+                        <div class="workeduc-content">
+                            <span class="year">
+                                <i class="bx bxs-calendar"></i>2019 - 2020
+                            </span>
+                            <h3>High School</h3>
+                            <p>
+                                I completed my high school education with an impressive 81.2% marks
+                                from the UK Board at Swami Dayananda Saraswati SCP Inter College, 
+                                located in Rishikesh, Uttarakhand.
+                            </p>
+                        </div>
+
+                        <div class="workeduc-content">
+                            <span class="year">
+                                <i class="bx bxs-calendar"></i>2021 - 2022
+                            </span>
+                            <h3>Inter College</h3>
+                            <p>
+                                I completed my inter College from UK board with 75.6% marks in PCM
+                                at Swami Dayananda Saraswati SCP Inter College, located in Rishikesh, Uttarakhand.
+                            </p>
+                        </div>
+
+                        <div class="workeduc-content">
+                            <span class="year">
+                                <i class="bx bxs-calendar"></i>2022 - 2026
+                            </span>
+                            <h3>B.Tech (CSE) Graphic Era Hill University</h3>
+                            <p>
+                                Pursuing bachelor's in technology with the specialization in computer science and engineering.
+                                Currently at 3rd year in Graphic Era Hill University Dehradun.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="page-footer">
+                        <div class="footer-item left">
+                            <span class="nextprev-btn back" data-pages="turn-1">
+                                <i class="bx bx-chevron-left"></i>
+                            </span>
+                        </div>
+                        <div class="footer-item center">
+                            <span class="number-page">2</span>
+                        </div>
+                        <div class="footer-item right"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 3 & 4 -->
+            <div class="book-page page-right turn" id="turn-2">
+                <!-- Page 3 (My Skills) -->
+                <div class="page-front">
+                    <h1 class="title">My Skills</h1>
+
+                    <div class="skills-box">
+                        <div class="skills-content">
+                            <h3>Front-End</h3>
+                            <div class="content">
+                                <span>
+                                    <i class="fab fa-html5 skill-icon"></i>
+                                    HTML
+                                </span>
+                                <span>
+                                    <i class="fab fa-css3-alt skill-icon"></i>
+                                    CSS
+                                </span>
+                                <span>
+                                    <i class="fab fa-js-square skill-icon"></i>
+                                    JS
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="skills-content">
+                            <h3>Back-End</h3>
+                            <div class="content">
+                                <span>
+                                    <i class="fab fa-python skill-icon"></i>
+                                    Python
+                                </span>
+                                <span>
+                                    <i class="fab fa-java skill-icon"></i>
+                                    Java
+                                </span>
+                                <span>
+                                    <i class="fab fa-node-js skill-icon"></i>
+                                    Node
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="page-footer">
+                        <div class="footer-item left"></div>
+                        <div class="footer-item center">
+                            <span class="number-page">3</span>
+                        </div>
+                        <div class="footer-item right">
+                            <span class="nextprev-btn" data-pages="turn-2">
+                                <i class="bx bx-chevron-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 4 (Latest Project) -->
+                <div class="page-back">
+                    <h1 class="title">Latest Project</h1>
+
+                    <div class="portfolio-box">
+                        <div class="img-box">
+                            <img src="./assets/portfolio.jpg" alt="Virtual Desktop Assistant Project">
+                        </div>
+
+                        <div class="info-box">
+                            <div class="info-title">
+                                <h3>Virtual Desktop Assistant</h3>
+                                <a href="#" aria-label="Live Preview">
+                                    Live Preview<i class="bx bx-link-external"></i>
+                                </a>
+                            </div>
+
+                            <p>Tech Used:</p>
+                            <p>
+                                I created "Virtual Desktop Assistant" using Python, my virtual desktop assistant is a versatile tool
+                                designed to streamline tasks and provide assistance with everyday activities.
+                                From fetching information and setting reminders to performing voice commands.
+                            </p>
+                        </div>
+
+                        <div class="btn-box">
+                            <a href="#" class="btn">Source Code</a>
+                            <a href="#" class="btn">More Projects</a>
+                        </div>
+                    </div>
+
+                    <div class="page-footer">
+                        <div class="footer-item left">
+                             <span class="nextprev-btn back" data-pages="turn-2">
+                                <i class="bx bx-chevron-left"></i>
+                            </span>
+                        </div>
+                        <div class="footer-item center">
+                            <span class="number-page">4</span>
+                        </div>
+                        <div class="footer-item right"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 5 & 6 -->
+            <div class="book-page page-right turn" id="turn-3">
+                <!-- Page 5 (Contact Me) -->
+                <div class="page-front">
+                    <h1 class="title">Contact Me!</h1>
+
+                    <div class="contact-box">
+                        <form action="#" method="post">
+                            <input type="text" class="field" placeholder="Full Name" required>
+                            <input type="email" class="field" placeholder="Email Address" required>
+                            <textarea class="field" placeholder="Your Message" required></textarea>
+                            <input type="submit" class="btn" value="Send Message">
+                        </form>
+                    </div>
+                    
+                    <div class="page-footer">
+                        <div class="footer-item left"></div>
+                        <div class="footer-item center">
+                            <span class="number-page">5</span>
+                        </div>
+                        <div class="footer-item right">
+                            <span class="nextprev-btn" data-pages="turn-3">
+                                <i class="bx bx-chevron-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 6 (Profile Link) -->
+                <div class="page-back">
+                    <a href="#" class="back-profile" aria-label="Back to Profile">
+                        <p>Profile</p>
+                        <i class="bx bxs-user"></i>
+                    </a>
+
+                    <div class="page-footer">
+                        <div class="footer-item left">
+                             <span class="nextprev-btn back" data-pages="turn-3">
+                                <i class="bx bx-chevron-left"></i>
+                            </span>
+                        </div>
+                        <div class="footer-item center">
+                            <span class="number-page">6</span>
+                        </div>
+                        <div class="footer-item right"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Turn pages when click next or prev button
+        const pageTurnBtn = document.querySelectorAll('.nextprev-btn');
+
+        pageTurnBtn.forEach((el, index) => {
+            el.onclick = () => {
+                const pageTurnId = el.getAttribute('data-pages');
+                const pageTurn = document.getElementById(pageTurnId);
+
+                if (pageTurn.classList.contains('turn')) {
+                    pageTurn.classList.remove('turn');
+                    setTimeout(() => {
+                        pageTurn.style.zIndex = 20 - index;
+                    }, 500);
+                } else {
+                    pageTurn.classList.add('turn');
+                    setTimeout(() => {
+                        pageTurn.style.zIndex = 20 + index;
+                    }, 500);
+                }
+            };
+        });
+
+        // Contact me button when clicked
+        const pages = document.querySelectorAll('.book-page.page-right');
+        const contactMeBtn = document.querySelector('.btn.contact-me');
+
+        contactMeBtn.onclick = () => {
+            pages.forEach((page, index) => {
+                setTimeout(() => {
+                    page.classList.add('turn');
+
+                    setTimeout(() => {
+                        page.style.zIndex = 20 + index;
+                    }, 500);
+                }, (index + 1) * 200 + 100);
+            });
+        };
+
+        // Create reverse index function
+        let totalPages = pages.length;
+        let pageNumber = 0;
+
+        function reverseIndex() {
+            pageNumber--;
+            if (pageNumber < 0) {
+                pageNumber = totalPages - 1;
+            }
+        }
+
+        // Back profile button when clicked
+        const backProfileBtn = document.querySelector('.back-profile');
+        backProfileBtn.onclick = (e) => {
+            e.preventDefault();
+            pages.forEach((_, index) => {
+                setTimeout(() => {
+                    reverseIndex();
+                    pages[pageNumber].classList.remove('turn');
+
+                    setTimeout(() => {
+                        reverseIndex();
+                        pages[pageNumber].style.zIndex = 10 + index;
+                    }, 500);
+                }, (index + 1) * 200 + 100);
+            });
+        };
+
+        // Opening animation
+        const coverRight = document.querySelector('.cover.cover-right');
+        const pageLeft = document.querySelector('.book-page.page-left');
+
+        // Opening animation (cover right animation)
+        setTimeout(() => {
+            coverRight.classList.add('turn');
+        }, 2100);
+
+        setTimeout(() => {
+            coverRight.style.zIndex = -1;
+        }, 2800);
+
+        // Opening animation (profile page animation)
+        setTimeout(() => {
+            pageLeft.style.zIndex = 20;
+        }, 3200);
+
+        // Opening animation (all page right animation)
+        pages.forEach((_, index) => {
+            setTimeout(() => {
+                reverseIndex();
+                pages[pageNumber].classList.remove('turn');
+
+                setTimeout(() => {
+                    reverseIndex();
+                    pages[pageNumber].style.zIndex = 10 + index;
+                }, 500);
+            }, (index + 1) * 200 + 2100);
+        });
+
+        // Add touch support for mobile devices
+        let startX = 0;
+        let startY = 0;
+        const threshold = 50;
+
+        document.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            if (!startX || !startY) return;
+
+            const endX = e.changedTouches[0].clientX;
+            const endY = e.changedTouches[0].clientY;
+            const diffX = startX - endX;
+            const diffY = startY - endY;
+
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > threshold) {
+                let currentTurnId = 0;
+                for (let i = 0; i < pages.length; i++) {
+                    if (!pages[i].classList.contains('turn')) {
+                        currentTurnId = i + 1;
+                        break;
+                    }
+                }
+                const visiblePage = document.getElementById(`turn-${currentTurnId}`);
+                if (visiblePage) {
+                    if (diffX > 0) { // Swipe left
+                        const nextBtn = visiblePage.querySelector('.nextprev-btn:not(.back)');
+                        if (nextBtn) nextBtn.click();
+                    } else { // Swipe right
+                        const prevBtn = visiblePage.querySelector('.nextprev-btn.back');
+                        if (prevBtn) prevBtn.click();
+                    }
+                } else if (diffX < 0) { // Swiping right on the first page
+                    const firstPage = document.getElementById('turn-1');
+                    const prevBtn = firstPage.querySelector('.nextprev-btn.back');
+                    if (prevBtn) prevBtn.click();
+                }
+            }
+
+            startX = 0;
+            startY = 0;
+        });
+    </script>
+</body>
+</html>
+responsive_portfolio.html
+Displaying responsive_portfolio.html.
